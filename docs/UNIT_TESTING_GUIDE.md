@@ -1,5 +1,7 @@
 # OpenAPI MCP Server ユニットテストガイド
 
+**[English](UNIT_TESTING_GUIDE.en.md)** | 日本語
+
 このガイドでは、分割されたOpenAPI処理アーキテクチャでのユニットテストの手法について説明します。
 
 ## 🏗️ 分割されたアーキテクチャ

@@ -1,16 +1,16 @@
-# OpenAPI MCP Server プロジェクト作成プロンプト
+# OpenAPI MCP Server Project Creation Prompt
 
-**[English](Prompt.en.md)** | 日本語
+English | **[日本語](Prompt.md)**
 
-以下のディレクトリ構造とファイルを持つTypeScriptプロジェクトを作成してください。
+Please create a TypeScript project with the following directory structure and files.
 
-## プロジェクト概要
-- プロジェクト名: openapi-mcp-server
-- タイプ: MCP (Model Context Protocol) サーバー
-- 言語: TypeScript (ES Modules)
-- 主要技術: Express, SQLite, Jest
+## Project Overview
+- Project Name: openapi-mcp-server
+- Type: MCP (Model Context Protocol) Server
+- Language: TypeScript (ES Modules)
+- Key Technologies: Express, SQLite, Jest
 
-## ディレクトリ構造
+## Directory Structure
 
 ```
 openapi-mcp-server/
@@ -239,37 +239,37 @@ openapi-mcp-server/
 }
 ```
 
-## 各ツールの構成パターン
+## Tool Configuration Pattern
 
-各ツール（openapi-tool, path-tool, response-tool, schema-tool, security-tool, server-tool）は以下の共通構造を持ちます：
+Each tool (openapi-tool, path-tool, response-tool, schema-tool, security-tool, server-tool) has the following common structure:
 
-- `formatters/response-formatter.ts`: レスポンスのフォーマット処理
-- `handler.ts`: リクエストハンドリング
-- `index.ts`: エクスポート定義
-- `repository.ts`: データアクセス層
-- `services/*-business-logic.ts`: ビジネスロジック
-- `tests/`: テストファイル
-- `tool.ts`: ツールのメイン定義
-- `types.ts`: 型定義
-- `validation.ts`: バリデーション処理
+- `formatters/response-formatter.ts`: Response formatting
+- `handler.ts`: Request handling
+- `index.ts`: Export definitions
+- `repository.ts`: Data access layer
+- `services/*-business-logic.ts`: Business logic
+- `tests/`: Test files
+- `tool.ts`: Main tool definition
+- `types.ts`: Type definitions
+- `validation.ts`: Validation processing
 
-## 主要な機能
+## Key Features
 
-1. **OpenAPI仕様の管理**: OpenAPI仕様ファイルの読み込み、解析、保存
-2. **MCPサーバー**: Model Context Protocolに準拠したサーバー実装
-3. **データベース**: SQLite（better-sqlite3）を使用したデータ永続化
-4. **ツール群**: OpenAPI仕様の各要素（パス、レスポンス、スキーマ、セキュリティ、サーバー）を扱うツール
-5. **テスト**: Jestを使用した単体テスト
+1. **OpenAPI Specification Management**: Loading, parsing, and saving OpenAPI specification files
+2. **MCP Server**: Server implementation compliant with Model Context Protocol
+3. **Database**: Data persistence using SQLite (better-sqlite3)
+4. **Tool Suite**: Tools for handling each element of OpenAPI specifications (paths, responses, schemas, security, servers)
+5. **Testing**: Unit testing using Jest
 
-## 実装手順
+## Implementation Steps
 
-1. プロジェクトディレクトリを作成
-2. `npm init -y`でpackage.jsonを生成し、上記の内容で更新
-3. 必要な依存関係をインストール: `npm install`
-4. TypeScript設定ファイル（tsconfig.json）を作成
-5. ディレクトリ構造に従ってフォルダを作成
-6. 各ツールのbase classやinterfaceを実装
-7. 各ツールの具体的な実装を追加
-8. テストファイルを作成
+1. Create project directory
+2. Generate package.json with `npm init -y` and update with the above content
+3. Install necessary dependencies: `npm install`
+4. Create TypeScript configuration file (tsconfig.json)
+5. Create folders according to the directory structure
+6. Implement base classes and interfaces for each tool
+7. Add specific implementations for each tool
+8. Create test files
 
-このプロジェクトは、OpenAPI仕様を管理・処理するMCPサーバーとして機能し、各ツールが独立したモジュールとして実装されています。
+This project functions as an MCP server that manages and processes OpenAPI specifications, with each tool implemented as an independent module.

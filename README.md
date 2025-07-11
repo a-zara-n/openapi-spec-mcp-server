@@ -1,6 +1,8 @@
 # OpenAPI Specification Docs MCP Server
 
-OpenAPI仕様の分析、検証、管理のための知的ツールを提供するTypeScriptベースのModel Context Protocol (MCP)サーバーです。このサーバーにより、AIアシスタントが構造化されたインターフェースを通じてOpenAPIドキュメントと対話することが可能になります。
+**[English](README.en.md)** | 日本語
+
+OpenAPI 仕様の分析、検証、管理のための知的ツールを提供する TypeScript ベースの Model Context Protocol (MCP)サーバーです。このサーバーにより、AI アシスタントが構造化されたインターフェースを通じて OpenAPI ドキュメントと対話することが可能になります。
 
 ## 目次
 
@@ -12,20 +14,20 @@ OpenAPI仕様の分析、検証、管理のための知的ツールを提供す�
 -   [使用方法](#使用方法)
 -   [設定](#設定)
 -   [開発ガイドライン](#開発ガイドライン)
--   [APIリファレンス](#apiリファレンス)
+-   [API リファレンス](#apiリファレンス)
 -   [トラブルシューティング](#トラブルシューティング)
 
 ## 概要
 
-OpenAPI MCP ServerはAIアシスタントとOpenAPI仕様のギャップを埋めるために設計されています。AIモデルが以下の操作を可能にする包括的なツールセットを提供します：
+OpenAPI MCP Serverは、AIアシスタントとOpenAPI仕様の架け橋となるサーバーです。このサーバーを使用することで、AIモデルは以下のことができるようになります：
 
--   ファイルやディレクトリからOpenAPI仕様をロードして解析
--   パス、スキーマ、セキュリティスキームを含むAPI構造の分析
--   特定のAPIエンドポイントとそのパラメータのクエリ
--   標準に対するOpenAPI仕様の検証
--   複数のAPI仕様の同時管理
+-   ローカルファイルやディレクトリからOpenAPI仕様を自動的に読み込み、解析
+-   APIのパス、スキーマ、セキュリティ設定などの構造を詳細に分析
+-   特定のAPIエンドポイントやパラメータについて自然言語でクエリ
+-   OpenAPI標準に準拠しているかどうかの検証を実行
+-   複数のAPI仕様を同時に管理し、相互参照
 
-このサーバーはModel Context Protocol (MCP)を実装しており、ClaudeのようなAI駆動の開発ツールとのシームレスな統合を可能にします。
+Model Context Protocol (MCP)を実装することで、ClaudeのようなAI開発ツールとシームレスに統合でき、APIドキュメントの理解と活用が飛躍的に向上します。
 
 ## アーキテクチャ
 
@@ -66,31 +68,31 @@ openapi-mcp-server/
 
 #### 1. **サーバーコンポーネント** (`server.ts`)
 
--   MCP通信のためのStreamable HTTPトランスポートを実装
--   ステートレス操作のためのPOSTとGETリクエストの両方を処理
+-   MCP 通信のための Streamable HTTP トランスポートを実装
+-   ステートレス操作のための POST と GET リクエストの両方を処理
 -   ツールの登録と実行を管理
 -   包括的なリクエスト/レスポンスロギングを提供
--   ファイル変更のためのOpenAPIディレクトリを監視
+-   ファイル変更のための OpenAPI ディレクトリを監視
 
 #### 2. **ツールマネージャー** (`tools/index.ts`)
 
 -   集中型ツールレジストリと実行エンジン
 -   ツール名をハンドラー関数にマップ
 -   エラー処理と実行追跡を提供
--   現在6つのカテゴリにわたる17の異なるツールを管理
+-   現在 6 つのカテゴリにわたる 17 の異なるツールを管理
 
 #### 3. **データベースレイヤー** (`tool-libs/core/database/`)
 
--   OpenAPI仕様のためのSQLiteベースのストレージ
+-   OpenAPI 仕様のための SQLite ベースのストレージ
 -   仕様、パス、スキーマなどの間の関係を管理
 -   効率的なクエリとキャッシングメカニズムを提供
--   完全なCRUD操作をサポート
+-   完全な CRUD 操作をサポート
 
-#### 4. **OpenAPIプロセッサー** (`tool-libs/services/openapi-processor.ts`)
+#### 4. **OpenAPI プロセッサー** (`tool-libs/services/openapi-processor.ts`)
 
--   YAMLとJSON OpenAPIファイルを解析
--   OpenAPI標準に対して仕様を検証
--   API情報を抽出して正規化
+-   YAML と JSON OpenAPI ファイルを解析
+-   OpenAPI 標準に対して仕様を検証
+-   API 情報を抽出して正規化
 -   ハッシングによるファイル変更検出を処理
 
 #### 5. **依存性注入コンテナ** (`tool-libs/core/di-container.ts`)
@@ -103,31 +105,31 @@ openapi-mcp-server/
 
 ### コア機能
 
--   **マルチフォーマット対応**: YAMLとJSON形式のOpenAPI 3.0+仕様を処理
--   **リアルタイム監視**: 変更と更新のためのOpenAPIディレクトリを監視
+-   **マルチフォーマット対応**: YAML と JSON 形式の OpenAPI 3.0+仕様を処理
+-   **リアルタイム監視**: 変更と更新のための OpenAPI ディレクトリを監視
 -   **ステートレスアーキテクチャ**: 各リクエストは独立しており、スケーラビリティを確保
--   **包括的な検証**: ストレージ前にOpenAPI仕様を検証
+-   **包括的な検証**: ストレージ前に OpenAPI 仕様を検証
 -   **詳細なロギング**: デバッグと監視のための広範なロギング
 -   **エラー処理**: 詳細なエラーメッセージによる堅牢なエラー管理
 
 ### 技術的特徴
 
--   **TypeScript**: 完全な型安全性とIntelliSenseサポート
--   **Express.js**: HTTPサーバー実装
+-   **TypeScript**: 完全な型安全性と IntelliSense サポート
+-   **Express.js**: HTTP サーバー実装
 -   **SQLite**: 軽量な組み込みデータベース
--   **MCP SDK**: 公式Model Context Protocol実装
+-   **MCP SDK**: 公式 Model Context Protocol 実装
 -   **ホットリロード**: 仕様変更の自動検出
 
 ## 利用可能なツール
 
-サーバーは6つのカテゴリに整理された17の専門ツールを提供します：
+サーバーは 6 つのカテゴリに整理された 17 の専門ツールを提供します：
 
-### 1. OpenAPI管理ツール
+### 1. OpenAPI 管理ツール
 
--   **`openapi_set_server_info`**: OpenAPI仕様をロードして登録
+-   **`openapi_set_server_info`**: OpenAPI 仕様をロードして登録
     -   個別のファイルまたはディレクトリ全体をサポート
     -   ストレージ前に仕様を検証
--   **`mcp_openapi_list_openapis`**: 登録されたすべてのOpenAPI仕様をリスト
+-   **`mcp_openapi_list_openapis`**: 登録されたすべての OpenAPI 仕様をリスト
     -   他のツールで使用するための仕様名を返す
 
 ### 2. サーバー情報ツール
@@ -137,7 +139,7 @@ openapi-mcp-server/
 
 ### 3. パス分析ツール
 
--   **`mcp_openapi_list_paths`**: 仕様内のすべてのAPIパスをリスト
+-   **`mcp_openapi_list_paths`**: 仕様内のすべての API パスをリスト
 -   **`mcp_openapi_get_path_info`**: 特定のパスの詳細情報を取得
 -   **`mcp_openapi_get_path_parameters`**: パスパラメータを抽出
 -   **`mcp_openapi_get_path_responses`**: パスのレスポンス定義を取得
@@ -165,7 +167,7 @@ openapi-mcp-server/
 
 ### 前提条件
 
--   Node.js 18+ およびnpm
+-   Node.js 18+ および npm
 -   TypeScript 5.0+
 -   Git
 
@@ -196,8 +198,8 @@ npm run build
 mkdir -p data/openapi
 ```
 
-5. **OpenAPIファイルを追加**:
-   OpenAPI仕様ファイル（`.yaml`、`.yml`、または`.json`）を`data/openapi`ディレクトリに配置します。
+5. **OpenAPI ファイルを追加**:
+   OpenAPI 仕様ファイル（`.yaml`、`.yml`、または`.json`）を`data/openapi`ディレクトリに配置します。
 
 ## 使用方法
 
@@ -216,9 +218,9 @@ npm start
 npm run build
 ```
 
-### MCPクライアントとの統合
+### MCP クライアントとの統合
 
-ClaudeデスクトップアプリまたはMCP対応クライアントで：
+Claude デスクトップアプリまたは MCP 対応クライアントで：
 
 ```json
 {
@@ -233,7 +235,7 @@ ClaudeデスクトップアプリまたはMCP対応クライアントで：
 
 ### ワークフローの例
 
-1. **OpenAPI仕様をロード**:
+1. **OpenAPI 仕様をロード**:
 
 ```json
 {
@@ -247,7 +249,7 @@ ClaudeデスクトップアプリまたはMCP対応クライアントで：
 }
 ```
 
-2. **利用可能なAPIをリスト**:
+2. **利用可能な API をリスト**:
 
 ```json
 {
@@ -259,7 +261,7 @@ ClaudeデスクトップアプリまたはMCP対応クライアントで：
 }
 ```
 
-3. **APIパスを探索**:
+3. **API パスを探索**:
 
 ```json
 {
@@ -297,14 +299,14 @@ ClaudeデスクトップアプリまたはMCP対応クライアントで：
 
 -   `PORT`: サーバーポート（デフォルト: 3000）
 -   `DB_PATH`: データベースファイルパス
--   `OPENAPI_DIR`: OpenAPIファイルディレクトリ
+-   `OPENAPI_DIR`: OpenAPI ファイルディレクトリ
 
 ## 開発ガイドライン
 
 ### 新しいツールの追加
 
 1. **ツールディレクトリを作成**: `src/tools/`の下に新しいディレクトリを作成
-2. **ツールインターフェースを定義**: MCPツール定義で`tool.ts`を作成
+2. **ツールインターフェースを定義**: MCP ツール定義で`tool.ts`を作成
 3. **ハンドラーを実装**: ビジネスロジックで`handler.ts`を作成
 4. **検証を追加**: 入力検証のための`validation.ts`を作成
 5. **ツールを登録**: `src/tools/index.ts`に追加
@@ -322,9 +324,9 @@ src/tools/my-tool/
 
 ### コードスタイル
 
--   TypeScriptストリクトモードを使用
--   ESLintルールに従う
--   すべてのパブリックAPIにJSDocコメントを追加
+-   TypeScript ストリクトモードを使用
+-   ESLint ルールに従う
+-   すべてのパブリック API に JSDoc コメントを追加
 -   ビジネスロジックのユニットテストを書く
 -   意味のある変数名と関数名を使用
 
@@ -348,11 +350,11 @@ npm run build
 
 出力は`build/`ディレクトリに生成されます。
 
-## APIリファレンス
+## API リファレンス
 
 ### ツールリクエスト形式
 
-すべてのツールはMCP標準形式に従います：
+すべてのツールは MCP 標準形式に従います：
 
 ```typescript
 {
@@ -371,9 +373,9 @@ npm run build
     content: [
         {
             type: "text",
-            text: string   // レスポンスデータ
-        }
-    ]
+            text: string, // レスポンスデータ
+        },
+    ];
 }
 ```
 
@@ -383,14 +385,14 @@ npm run build
 
 1. **サーバーが起動しない**:
 
-    - ポート3000が既に使用されていないか確認
+    - ポート 3000 が既に使用されていないか確認
     - すべての依存関係がインストールされていることを確認
-    - TypeScriptビルドが正常に完了したことを確認
+    - TypeScript ビルドが正常に完了したことを確認
 
-2. **OpenAPIファイルがロードされない**:
+2. **OpenAPI ファイルがロードされない**:
 
     - `data/openapi/`のファイル権限を確認
-    - ファイルが有効なYAML/JSONであることを確認
+    - ファイルが有効な YAML/JSON であることを確認
     - 検証エラーのサーバーログを確認
 
 3. **データベースエラー**:
@@ -422,7 +424,7 @@ enableLogging: true; // 様々な設定オブジェクトで
 
 ## ライセンス
 
-ISCライセンス - 詳細はLICENSEファイルを参照してください。
+ISC ライセンス - 詳細は[LICENSE ファイル](LICENSE)を参照してください。
 
 ## コントリビューション
 
