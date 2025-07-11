@@ -1,4 +1,4 @@
-# OpenAPI MCP Server
+# OpenAPI Specification Docs MCP Server
 
 OpenAPI仕様の分析、検証、管理のための知的ツールを提供するTypeScriptベースのModel Context Protocol (MCP)サーバーです。このサーバーにより、AIアシスタントが構造化されたインターフェースを通じてOpenAPIドキュメントと対話することが可能になります。
 
